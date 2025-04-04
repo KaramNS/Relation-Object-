@@ -21,8 +21,19 @@ public class Relation < A extends Relationnable , B extends Relationnable >
         return this.relatedB ;
     }
     
-    public void breakUp () 
+    public void breakUpA()
     {
-        
+        this.relatedA.breakUP() ;
+    }
+
+    public void breakUpB()
+    {
+        this.relatedB.breakUP() ;
+    }
+
+    public void breakUp() 
+    {
+        this.breakUpA() ;
+        this.breakUpB();
     }
 }
