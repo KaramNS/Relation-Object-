@@ -54,7 +54,7 @@ public class City implements Relationnable
     {
         if ( other instanceof Country)
         {
-            this.countryRelation = new Relation (other , this) ;
+            this.countryRelation = new Relation<Country, City>((Country) other , (this) );
 
             ((Country)other).capital(countryRelation);
         }

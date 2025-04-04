@@ -76,13 +76,12 @@ class Country implements Relationnable
         this.capitalRelation = null ;
     }
 
-    @SuppressWarnings("rawtypes")
     @Override 
     public void relateTo(Relationnable relatee)
     {
         if ( relatee instanceof City )
         {
-            this.capitalRelation = new Relation (this , relatee) ;
+            this.capitalRelation = new Relation<Country, City>(this, (City) relatee) ;
 
             this.cities.add( (City) relatee ) ;
 
