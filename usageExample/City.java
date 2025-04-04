@@ -1,4 +1,5 @@
-package usageExample;
+package usageExample ;
+
 import src.Relation;
 import src.Relationnable;
 
@@ -45,14 +46,17 @@ public class City implements Relationnable
     @Override
     public void breakUP() 
     {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'breakUP'");
+        this.countryRelation = null ;
     }
 
     @Override
     public void relateTo(Relationnable other) 
     {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'relateTo'");
+        if ( other instanceof Country)
+        {
+            this.countryRelation = new Relation (other , this) ;
+
+            ((Country)other).capital(countryRelation);
+        }
     }
 }

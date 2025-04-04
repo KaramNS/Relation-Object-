@@ -1,10 +1,11 @@
-package usageExample;
+package usageExample ;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import src.Relation;
 import src.Relationnable;
+
 
 class Country implements Relationnable
 {
@@ -20,20 +21,18 @@ class Country implements Relationnable
 
         this.capitalRelation = null ;
 
-        this.capital ( capital ) ;
+        this.relateTo(capital) ;
     }
     
     // Setters 
     
-    public void capital (City capital)
+    public void capital (Relation < Country , City > capitalRelation)
     {
         if ( this.capitalRelation == null )
         { 
-            this.capitalRelation = new Relation < Country , City > ( this , capital ) ;
+            this.capitalRelation = capitalRelation ;
 
-            capital.capital ( capitalRelation ) ;
-
-            this.cities.add ( capital ) ;
+            this.cities.add ( capitalRelation.relatedB() ) ;
         }
         else 
         {
@@ -72,14 +71,23 @@ class Country implements Relationnable
 
     @Override
     public void breakUP ()
-    {
-        // TODO
+    {   
+        // this.capitalRelation.relatedB().breakUP() ;
+        this.capitalRelation = null ;
     }
 
+    @SuppressWarnings("rawtypes")
     @Override 
     public void relateTo(Relationnable relatee)
     {
-        // TODO 
+        if ( relatee instanceof City )
+        {
+            this.capitalRelation = new Relation (this , relatee) ;
+
+            this.cities.add( (City) relatee ) ;
+
+            ( (City) relatee ).capital(capitalRelation); ;
+        }
     }
 
 }

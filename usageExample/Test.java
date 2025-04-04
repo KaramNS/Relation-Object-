@@ -1,4 +1,4 @@
-package usageExample ;
+package usageExample;
 
 public class Test 
 {
@@ -13,5 +13,10 @@ public class Test
         france.add(cf);
 
         System.out.println( france.toString() ) ;
+
+        france.relateTo(cf);
+
+        System.out.println( france.toString() ) ;
+
     }
 }
